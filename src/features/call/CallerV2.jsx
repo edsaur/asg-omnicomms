@@ -1,3 +1,6 @@
+// VERSION 2 WITH TWILIO VOICE SDK (DOES NOT WORK!!)
+
+
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 import { FaPhoneAlt, FaBackspace, FaPhoneSlash } from "react-icons/fa";
