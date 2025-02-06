@@ -1,3 +1,5 @@
+// WITH VOICE SDK CODE
+
 require("dotenv").config(); // Load environment variables from .env
 
 const WebSocket = require("ws");
