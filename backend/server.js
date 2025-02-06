@@ -120,7 +120,7 @@ app.get("/token", (req, res) => {
 });
 
 
-// 🎯 Handle an outgoing call request
+// Handle an outgoing call request
 app.post("/outgoing-call", async (req, res) => {
   const { to } = req.body;
 
@@ -145,11 +145,11 @@ app.post("/outgoing-call", async (req, res) => {
   }
 });
 
-// 🎯 Handle incoming call (optional)
+// Handle incoming call (optional)
 app.post("/incoming", (req, res) => {
   const twiml = new VoiceResponse();
   twiml.say("Hello! You have an incoming call.");
-//   twiml.play({}, 'https://demo.twilio.com/docs/classic.mp3');
+  twiml.play({}, 'https://demo.twilio.com/docs/classic.mp3');
   twiml.dial(twilioPhoneNumber);
   res.type("text/xml");
   res.send(twiml.toString());
@@ -275,7 +275,7 @@ async function fetchLatestEmails() {
     port: 993,
     secure: true,
     auth: {
-      user: "edzerdionido10@gmail.com",
+      user: process.env.EMAIL_USER,
       accessToken: auth.credentials.access_token,
     },
   });
@@ -332,7 +332,7 @@ app.get("/email/:id", async (req, res) => {
       port: 993,
       secure: true,
       auth: {
-        user: "edzerdionido10@gmail.com",
+        user: process.env.EMAIL_USER,
         accessToken: auth.credentials.access_token,
       },
     });
@@ -411,7 +411,7 @@ app.post("/send-email", upload.single("attachment"), async (req, res) => {
       service: "gmail",
       auth: {
         type: "OAuth2",
-        user: "edzerdionido10@gmail.com",
+        user: process.env.EMAIL_USER,
         clientId: auth._clientId,
         clientSecret: auth._clientSecret,
         refreshToken: auth.credentials.refresh_token,
@@ -486,4 +486,3 @@ wss.on("connection", (ws) => {
   });
 });
 
-console.log(port);
